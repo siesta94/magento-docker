@@ -1,0 +1,23 @@
+version: '2'
+services:
+        db:
+           image: mariadb:latest
+           restart: always
+           environment:
+             MYSQL_ROOT_PASSWORD: root
+             MYSQL_DATABASE: magento2
+           ports:
+             - 3306:3306
+             - 9998:9998
+             - 9999:9999
+
+        elastisearch:
+             image: elasticsearch:7.11.1
+             restart: always
+             ports:
+              - 9200:9200
+        
+        magento:
+             build: web-server
+             ports:
+               - 80:80    
